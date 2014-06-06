@@ -1,2 +1,177 @@
 {
+  "report-detailed": {
+    "workspace_id":        "required",
+    "since":               {
+      "type":    "date",
+      "format":  "YYYY-MM-DD",
+      "default": {
+        "days": -6
+      }
+    },
+    "until":               {
+      "type":    "date",
+      "format":  "YYYY-MM-DD",
+      "default": {}
+    },
+    "billable":            {
+      "type":    "enum",
+      "values":  ["yes", "no", "both"],
+      "default": "both"
+    },
+    "client_ids":          0,
+    "project_ids":         0,
+    "user_ids":            null,
+    "tag_ids":             0,
+    "task_ids":            0,
+    "time_entry_ids":      null,
+    "description":         "",
+    "without_description": true,
+    "order_field":         {
+      "type":    "enum",
+      "values":  ["date", "description", "duration", "user"],
+      "default": "date"
+    },
+    "order_desc":          {
+      "type":    "enum",
+      "values":  ["on", "off"],
+      "default": "off"
+    },
+    "distinct_rates":      {
+      "type":    "enum",
+      "values":  ["on", "off"],
+      "default": "off"
+    },
+    "rounding":            {
+      "type":    "enum",
+      "values":  ["on", "off"],
+      "default": "off"
+    },
+    "display_hours":       {
+      "type":    "enum",
+      "values":  ["decimal", "minutes"],
+      "default": "minutes"
+    },
+    "page":                1
+  },
+  "report-summary":  {
+    "workspace_id":        "required",
+    "since":               {
+      "type":    "date",
+      "format":  "YYYY-MM-DD",
+      "default": {
+        "days": -6
+      }
+    },
+    "until":               {
+      "type":    "date",
+      "format":  "YYYY-MM-DD",
+      "default": {}
+    },
+    "billable":            {
+      "type":    "enum",
+      "values":  ["yes", "no", "both"],
+      "default": "both"
+    },
+    "client_ids":          0,
+    "project_ids":         0,
+    "user_ids":            null,
+    "tag_ids":             0,
+    "task_ids":            0,
+    "time_entry_ids":      null,
+    "description":         "",
+    "without_description": true,
+    "order_field":         {
+      "type":    "enum",
+      "values":  ["title", "duration", "amount"],
+      "default": "title"
+    },
+    "order_desc":          {
+      "type":    "enum",
+      "values":  ["on", "off"],
+      "default": "off"
+    },
+    "distinct_rates":      {
+      "type":    "enum",
+      "values":  ["on", "off"],
+      "default": "off"
+    },
+    "rounding":            {
+      "type":    "enum",
+      "values":  ["on", "off"],
+      "default": "off"
+    },
+    "display_hours":       {
+      "type":    "enum",
+      "values":  ["decimal", "minutes"],
+      "default": "minutes"
+    },
+    "grouping":            {
+      "type":    "enum",
+      "values":  ["projects", "clients", "users"],
+      "default": "projects"
+    },
+    "subgrouping":         {
+      "type":    "enum",
+      "values":  ["time_entries", "tasks", "projects", "users", "clients"],
+      "default": "time_entries"
+    }
+  },
+  "report-weekly":   {
+    "workspace_id":        "required",
+    "since":               {
+      "type":    "date",
+      "format":  "YYYY-MM-DD",
+      "default": {
+        "days": -6
+      }
+    },
+    "billable":            {
+      "type":    "enum",
+      "values":  ["yes", "no", "both"],
+      "default": "both"
+    },
+    "client_ids":          0,
+    "project_ids":         0,
+    "user_ids":            null,
+    "tag_ids":             0,
+    "task_ids":            0,
+    "time_entry_ids":      null,
+    "description":         "",
+    "without_description": true,
+    "order_field":         {
+      "type":    "enum",
+      "values":  ["title", "day1", "day2", "day3", "day4", "day5", "day6", "day7", "week_total"],
+      "default": "title"
+    },
+    "order_desc":          {
+      "type":    "enum",
+      "values":  ["on", "off"],
+      "default": "off"
+    },
+    "distinct_rates":      {
+      "type":    "enum",
+      "values":  ["on", "off"],
+      "default": "off"
+    },
+    "rounding":            {
+      "type":    "enum",
+      "values":  ["on", "off"],
+      "default": "off"
+    },
+    "display_hours":       {
+      "type":    "enum",
+      "values":  ["decimal", "minutes"],
+      "default": "minutes"
+    },
+    "grouping":            {
+      "type":    "enum",
+      "values":  ["users", "projects"],
+      "default": "projects"
+    },
+    "calculate":           {
+      "type":    "enum",
+      "values":  ["time", "earnings"],
+      "default": "time"
+    }
+  }
 }
