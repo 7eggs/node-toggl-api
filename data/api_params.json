@@ -32,6 +32,15 @@
       "default": true
     }
   },
+  "project-create":      {
+    "name":           "required",
+    "wid":            "required",
+    "active":         true,
+    "is_private":     true,
+    "template":       false,
+    "billable":       false,
+    "auto_estimates": false
+  },
   "report-detailed":     {
     "workspace_id":        "required",
     "since":               {
