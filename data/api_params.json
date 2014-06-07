@@ -1,8 +1,8 @@
 {
-  "user-data-get":   {
+  "user-data-get":       {
     "with_related_data": false
   },
-  "user-data-set":   {
+  "user-data-set":       {
     "beginning_of_week": {
       "type":   "enum",
       "values": [0, 1, 2, 3, 4, 5, 6]
@@ -16,12 +16,23 @@
       "values": ["YYYY-MM-DD", "DD.MM.YYYY", "DD-MM-YYYY", "MM/DD/YYYY", "DD/MM/YYYY", "MM-DD-YYYY"]
     }
   },
-  "user-signup":     {
+  "user-signup":         {
     "email":    "required",
     "password": "required",
     "timezone": "required"
   },
-  "report-detailed": {
+  "client-create":       {
+    "name": "required",
+    "wid":  "required"
+  },
+  "client-get-projects": {
+    "active": {
+      "type":    "enum",
+      "values":  [true, false, "both"],
+      "default": true
+    }
+  },
+  "report-detailed":     {
     "workspace_id":        "required",
     "since":               {
       "type":    "date",
@@ -75,7 +86,7 @@
     },
     "page":                1
   },
-  "report-summary":  {
+  "report-summary":      {
     "workspace_id":        "required",
     "since":               {
       "type":    "date",
@@ -138,7 +149,7 @@
       "default": "time_entries"
     }
   },
-  "report-weekly":   {
+  "report-weekly":       {
     "workspace_id":        "required",
     "since":               {
       "type":    "date",
