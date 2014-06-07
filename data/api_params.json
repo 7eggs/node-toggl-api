@@ -1,4 +1,26 @@
 {
+  "user-data-get":   {
+    "with_related_data": false
+  },
+  "user-data-set":   {
+    "beginning_of_week": {
+      "type":   "enum",
+      "values": [0, 1, 2, 3, 4, 5, 6]
+    },
+    "timeofday_format":  {
+      "type":   "enum",
+      "values": ["H:mm", "h:mm A"]
+    },
+    "date_format":       {
+      "type":   "enum",
+      "values": ["YYYY-MM-DD", "DD.MM.YYYY", "DD-MM-YYYY", "MM/DD/YYYY", "DD/MM/YYYY", "MM-DD-YYYY"]
+    }
+  },
+  "user-signup":     {
+    "email":    "required",
+    "password": "required",
+    "timezone": "required"
+  },
   "report-detailed": {
     "workspace_id":        "required",
     "since":               {
