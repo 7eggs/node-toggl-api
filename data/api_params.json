@@ -28,7 +28,7 @@
   "client-get-projects":      {
     "active": {
       "type":    "enum",
-      "values":  [true, false, "both"],
+      "values":  ["true", "false", "both"],
       "default": true
     }
   },
@@ -89,6 +89,20 @@
       "required": true
     },
     "tags":       "required"
+  },
+  "workspace-projects": {
+    "active": {
+      "type":    "enum",
+      "values":  ["true", "false", "both"],
+      "default": true
+    }
+  },
+  "workspace-tasks": {
+    "active": {
+      "type":    "enum",
+      "values":  ["true", "false", "both"],
+      "default": true
+    }
   },
   "report-detailed":          {
     "workspace_id":        "required",
