@@ -41,6 +41,11 @@
     "billable":       false,
     "auto_estimates": false
   },
+  "project-user-add":    {
+    "pid": "required",
+    "uid": "required",
+    "manager": false
+  },
   "report-detailed":     {
     "workspace_id":        "required",
     "since":               {
