@@ -1,4 +1,4 @@
-node-toggl
+toggl-api
 ==========
 
 Toggl API for Node.js. Library is based on official Toggl API [documentation](https://github.com/toggl/toggl_api_docs).
