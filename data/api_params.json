@@ -53,6 +53,12 @@
   "tag-update":          {
     "name": "required"
   },
+  "task-create":         {
+    "name":              "required",
+    "pid":               "required",
+    "active":            true,
+    "estimated_seconds": 0
+  },
   "report-detailed":     {
     "workspace_id":        "required",
     "since":               {
