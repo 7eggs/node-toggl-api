@@ -1,5 +1,5 @@
 {
-  "name":            "node-toggl",
+  "name":            "toggl-api",
   "description":     "Toggl API for Node.js",
   "version":         "0.0.1",
   "main":            "./lib/client.js",
@@ -10,7 +10,7 @@
   ],
   "repository":      {
     "type": "git",
-    "url":  "git://github.com/7eggs/node-toggl.git"
+    "url":  "git://github.com/7eggs/node-toggl-api.git"
   },
   "dependencies":    {
     "custom-error-generator": "^7.0.0",
