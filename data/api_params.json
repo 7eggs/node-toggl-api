@@ -1,8 +1,8 @@
 {
-  "user-data-get":       {
+  "user-data-get":            {
     "with_related_data": false
   },
-  "user-data-set":       {
+  "user-data-set":            {
     "beginning_of_week": {
       "type":   "enum",
       "values": [0, 1, 2, 3, 4, 5, 6]
@@ -16,23 +16,23 @@
       "values": ["YYYY-MM-DD", "DD.MM.YYYY", "DD-MM-YYYY", "MM/DD/YYYY", "DD/MM/YYYY", "MM-DD-YYYY"]
     }
   },
-  "user-signup":         {
+  "user-signup":              {
     "email":    "required",
     "password": "required",
     "timezone": "required"
   },
-  "client-create":       {
+  "client-create":            {
     "name": "required",
     "wid":  "required"
   },
-  "client-get-projects": {
+  "client-get-projects":      {
     "active": {
       "type":    "enum",
       "values":  [true, false, "both"],
       "default": true
     }
   },
-  "project-create":      {
+  "project-create":           {
     "name":           "required",
     "wid":            "required",
     "active":         true,
@@ -41,25 +41,56 @@
     "billable":       false,
     "auto_estimates": false
   },
-  "project-user-add":    {
+  "project-user-add":         {
     "pid":     "required",
     "uid":     "required",
     "manager": false
   },
-  "tag-create":          {
+  "tag-create":               {
     "name": "required",
     "wid":  "required"
   },
-  "tag-update":          {
+  "tag-update":               {
     "name": "required"
   },
-  "task-create":         {
+  "task-create":              {
     "name":              "required",
     "pid":               "required",
     "active":            true,
     "estimated_seconds": 0
   },
-  "report-detailed":     {
+  "time-entry-create":        {
+    "billable":     false,
+    "start":        {
+      "type":     "date",
+      "format":   "YYYY-MM-DDTHH:mm:ss.SSS[Z]",
+      "required": true
+    },
+    "stop":         {
+      "type":   "date",
+      "format": "YYYY-MM-DDTHH:mm:ss.SSS[Z]"
+    },
+    "duration":     "required"
+  },
+  "time-entry-get-timerange": {
+    "start_date": {
+      "type":   "date",
+      "format": "YYYY-MM-DDTHH:mm:ss.SSSZ"
+    },
+    "end_date":   {
+      "type":   "date",
+      "format": "YYYY-MM-DDTHH:mm:ss.SSSZ"
+    }
+  },
+  "time-entry-update-tags":   {
+    "tag_action": {
+      "type":     "enum",
+      "values":   ["add", "remove"],
+      "required": true
+    },
+    "tags":       "required"
+  },
+  "report-detailed":          {
     "workspace_id":        "required",
     "since":               {
       "type":    "date",
@@ -113,7 +144,7 @@
     },
     "page":                1
   },
-  "report-summary":      {
+  "report-summary":           {
     "workspace_id":        "required",
     "since":               {
       "type":    "date",
@@ -176,7 +207,7 @@
       "default": "time_entries"
     }
   },
-  "report-weekly":       {
+  "report-weekly":            {
     "workspace_id":        "required",
     "since":               {
       "type":    "date",
