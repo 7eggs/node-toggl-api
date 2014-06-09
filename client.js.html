@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: client.js</title>
+    
+    
+    
+    
+    
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"default":{"outputSourceFiles":true},"applicationName":"toggl-api","disqus":"","googleAnalytics":"","openGraph":{"title":"","type":"website","image":"","site_name":"","url":""},"meta":{"title":"","description":"","keyword":""}};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html">toggl-api</a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+    
+        <li class="item" data-name="APIError">
+            <span class="title">
+                <a href="APIError.html">APIError</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="APIError#code"><a href="APIError.html#code">code</a></li>
+            
+                <li data-name="APIError#data"><a href="APIError.html#data">data</a></li>
+            
+                <li data-name="APIError#errors"><a href="APIError.html#errors">errors</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="ReportError">
+            <span class="title">
+                <a href="ReportError.html">ReportError</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="ReportError#code"><a href="ReportError.html#code">code</a></li>
+            
+                <li data-name="ReportError#message"><a href="ReportError.html#message">message</a></li>
+            
+                <li data-name="ReportError#tip"><a href="ReportError.html#tip">tip</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="TogglClient">
+            <span class="title">
+                <a href="TogglClient.html">TogglClient</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="TogglClient.USER_AGENT"><a href="TogglClient.html#USER_AGENT">USER_AGENT</a></li>
+            
+                <li data-name="TogglClient#authData"><a href="TogglClient.html#authData">authData</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="TogglClient.createUser"><a href="TogglClient.html#createUser">createUser</a></li>
+            
+                <li data-name="TogglClient.defaultClient"><a href="TogglClient.html#defaultClient">defaultClient</a></li>
+            
+                <li data-name="TogglClient.setDefaults"><a href="TogglClient.html#setDefaults">setDefaults</a></li>
+            
+                <li data-name="TogglClient#addProjectUser"><a href="TogglClient.html#addProjectUser">addProjectUser</a></li>
+            
+                <li data-name="TogglClient#addProjectUsers"><a href="TogglClient.html#addProjectUsers">addProjectUsers</a></li>
+            
+                <li data-name="TogglClient#addTimeEntriesTags"><a href="TogglClient.html#addTimeEntriesTags">addTimeEntriesTags</a></li>
+            
+                <li data-name="TogglClient#authenticate"><a href="TogglClient.html#authenticate">authenticate</a></li>
+            
+                <li data-name="TogglClient#changeUserPassword"><a href="TogglClient.html#changeUserPassword">changeUserPassword</a></li>
+            
+                <li data-name="TogglClient#createClient"><a href="TogglClient.html#createClient">createClient</a></li>
+            
+                <li data-name="TogglClient#createProject"><a href="TogglClient.html#createProject">createProject</a></li>
+            
+                <li data-name="TogglClient#createTag"><a href="TogglClient.html#createTag">createTag</a></li>
+            
+                <li data-name="TogglClient#createTask"><a href="TogglClient.html#createTask">createTask</a></li>
+            
+                <li data-name="TogglClient#createTimeEntry"><a href="TogglClient.html#createTimeEntry">createTimeEntry</a></li>
+            
+                <li data-name="TogglClient#deleteClient"><a href="TogglClient.html#deleteClient">deleteClient</a></li>
+            
+                <li data-name="TogglClient#deleteProject"><a href="TogglClient.html#deleteProject">deleteProject</a></li>
+            
+                <li data-name="TogglClient#deleteProjects"><a href="TogglClient.html#deleteProjects">deleteProjects</a></li>
+            
+                <li data-name="TogglClient#deleteProjectUser"><a href="TogglClient.html#deleteProjectUser">deleteProjectUser</a></li>
+            
+                <li data-name="TogglClient#deleteProjectUsers"><a href="TogglClient.html#deleteProjectUsers">deleteProjectUsers</a></li>
+            
+                <li data-name="TogglClient#deleteTag"><a href="TogglClient.html#deleteTag">deleteTag</a></li>
+            
+                <li data-name="TogglClient#deleteTask"><a href="TogglClient.html#deleteTask">deleteTask</a></li>
+            
+                <li data-name="TogglClient#deleteTasks"><a href="TogglClient.html#deleteTasks">deleteTasks</a></li>
+            
+                <li data-name="TogglClient#deleteTimeEntry"><a href="TogglClient.html#deleteTimeEntry">deleteTimeEntry</a></li>
+            
+                <li data-name="TogglClient#deleteWorkspaceUser"><a href="TogglClient.html#deleteWorkspaceUser">deleteWorkspaceUser</a></li>
+            
+                <li data-name="TogglClient#destroy"><a href="TogglClient.html#destroy">destroy</a></li>
+            
+                <li data-name="TogglClient#detailedReport"><a href="TogglClient.html#detailedReport">detailedReport</a></li>
+            
+                <li data-name="TogglClient#getClientData"><a href="TogglClient.html#getClientData">getClientData</a></li>
+            
+                <li data-name="TogglClient#getClientProjects"><a href="TogglClient.html#getClientProjects">getClientProjects</a></li>
+            
+                <li data-name="TogglClient#getClients"><a href="TogglClient.html#getClients">getClients</a></li>
+            
+                <li data-name="TogglClient#getCurrentTimeEntry"><a href="TogglClient.html#getCurrentTimeEntry">getCurrentTimeEntry</a></li>
+            
+                <li data-name="TogglClient#getProjectData"><a href="TogglClient.html#getProjectData">getProjectData</a></li>
+            
+                <li data-name="TogglClient#getProjectTasks"><a href="TogglClient.html#getProjectTasks">getProjectTasks</a></li>
+            
+                <li data-name="TogglClient#getProjectUsers"><a href="TogglClient.html#getProjectUsers">getProjectUsers</a></li>
+            
+                <li data-name="TogglClient#getTaskData"><a href="TogglClient.html#getTaskData">getTaskData</a></li>
+            
+                <li data-name="TogglClient#getTimeEntries"><a href="TogglClient.html#getTimeEntries">getTimeEntries</a></li>
+            
+                <li data-name="TogglClient#getTimeEntryData"><a href="TogglClient.html#getTimeEntryData">getTimeEntryData</a></li>
+            
+                <li data-name="TogglClient#getUserData"><a href="TogglClient.html#getUserData">getUserData</a></li>
+            
+                <li data-name="TogglClient#getWorkspaceClients"><a href="TogglClient.html#getWorkspaceClients">getWorkspaceClients</a></li>
+            
+                <li data-name="TogglClient#getWorkspaceData"><a href="TogglClient.html#getWorkspaceData">getWorkspaceData</a></li>
+            
+                <li data-name="TogglClient#getWorkspaceProjects"><a href="TogglClient.html#getWorkspaceProjects">getWorkspaceProjects</a></li>
+            
+                <li data-name="TogglClient#getWorkspaces"><a href="TogglClient.html#getWorkspaces">getWorkspaces</a></li>
+            
+                <li data-name="TogglClient#getWorkspaceTags"><a href="TogglClient.html#getWorkspaceTags">getWorkspaceTags</a></li>
+            
+                <li data-name="TogglClient#getWorkspaceTasks"><a href="TogglClient.html#getWorkspaceTasks">getWorkspaceTasks</a></li>
+            
+                <li data-name="TogglClient#getWorkspaceUsers"><a href="TogglClient.html#getWorkspaceUsers">getWorkspaceUsers</a></li>
+            
+                <li data-name="TogglClient#inviteUsers"><a href="TogglClient.html#inviteUsers">inviteUsers</a></li>
+            
+                <li data-name="TogglClient#removeTimeEntriesTags"><a href="TogglClient.html#removeTimeEntriesTags">removeTimeEntriesTags</a></li>
+            
+                <li data-name="TogglClient#resetApiToken"><a href="TogglClient.html#resetApiToken">resetApiToken</a></li>
+            
+                <li data-name="TogglClient#startTimeEntry"><a href="TogglClient.html#startTimeEntry">startTimeEntry</a></li>
+            
+                <li data-name="TogglClient#stopTimeEntry"><a href="TogglClient.html#stopTimeEntry">stopTimeEntry</a></li>
+            
+                <li data-name="TogglClient#summaryReport"><a href="TogglClient.html#summaryReport">summaryReport</a></li>
+            
+                <li data-name="TogglClient#updateClient"><a href="TogglClient.html#updateClient">updateClient</a></li>
+            
+                <li data-name="TogglClient#updateProject"><a href="TogglClient.html#updateProject">updateProject</a></li>
+            
+                <li data-name="TogglClient#updateProjectUser"><a href="TogglClient.html#updateProjectUser">updateProjectUser</a></li>
+            
+                <li data-name="TogglClient#updateProjectUsers"><a href="TogglClient.html#updateProjectUsers">updateProjectUsers</a></li>
+            
+                <li data-name="TogglClient#updateTagName"><a href="TogglClient.html#updateTagName">updateTagName</a></li>
+            
+                <li data-name="TogglClient#updateTask"><a href="TogglClient.html#updateTask">updateTask</a></li>
+            
+                <li data-name="TogglClient#updateTasks"><a href="TogglClient.html#updateTasks">updateTasks</a></li>
+            
+                <li data-name="TogglClient#updateTimeEntriesTags"><a href="TogglClient.html#updateTimeEntriesTags">updateTimeEntriesTags</a></li>
+            
+                <li data-name="TogglClient#updateTimeEntry"><a href="TogglClient.html#updateTimeEntry">updateTimeEntry</a></li>
+            
+                <li data-name="TogglClient#updateUserData"><a href="TogglClient.html#updateUserData">updateUserData</a></li>
+            
+                <li data-name="TogglClient#updateWorkspace"><a href="TogglClient.html#updateWorkspace">updateWorkspace</a></li>
+            
+                <li data-name="TogglClient#updateWorkspaceUser"><a href="TogglClient.html#updateWorkspaceUser">updateWorkspaceUser</a></li>
+            
+                <li data-name="TogglClient#weeklyReport"><a href="TogglClient.html#weeklyReport">weeklyReport</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="ValidateError">
+            <span class="title">
+                <a href="ValidateError.html">ValidateError</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="ValidateError#message"><a href="ValidateError.html#message">message</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+    </ul>
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="client.js.html">Source: client.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>'use strict'
+
+var _ = require('lodash')
+  , errors = require('./errors')
+  , EventEmitter = require('events').EventEmitter
+  , request = require('request')
+  , validate = require('./validator')
+  , VERSION = require('../package.json').version
+  , APIError = errors.APIError
+  , ReportError = errors.ReportError
+  , defaultClient = null
+
+var defaults = {
+  reauth:        false,
+  sessionCookie: 'toggl_api_session',
+  apiUrl:        'https://www.toggl.com',
+  reportsUrl:    'https://toggl.com/reports'
+}
+
+
+
+
+function noop() {
+}
+
+
+
+
+/**
+ * Validate client options
+ */
+function validateOptions(options) {
+  if (!options.apiToken &amp;&amp; !(options.username &amp;&amp; options.password)) {
+    throw new Error('You should either specify apiToken or username and password')
+  }
+
+  // if we use apiToken we do not need a session cookie
+  if (options.apiToken) {
+    options.reauth = true
+  }
+
+  if (!options.apiUrl) {
+    throw new Error('Toggl API base URL is not specified')
+  }
+}
+
+
+
+
+/**
+ * Expose client
+ */
+module.exports = TogglClient
+
+
+
+
+/**
+ * Toggl API client
+ *
+ * @constructor
+ * @param [options] Client options
+ */
+function TogglClient(options) {
+  /**
+   * @private
+   */
+  this.options = {}
+  _.assign(this.options, defaults)
+
+  if (options !== undefined) {
+    _.assign(this.options, options)
+    validateOptions(this.options)
+  }
+
+
+  /**
+   * For internal needs
+   *
+   * @private
+   * @type {EventEmitter}
+   */
+  this.emitter = new EventEmitter()
+  this.emitter.setMaxListeners(0)
+
+
+  /**
+   * Used to store and set cookies for API requests
+   *
+   * @private
+   * @type {CookieJar}
+   */
+  this.cookieJar = request.jar()
+
+
+  /**
+   * Result of authentication call
+   *
+   * @public
+   */
+  this.authData = null
+
+
+  /**
+   * Re-authentication timeout ID
+   *
+   * @private
+   */
+  this.authTimeout = null
+
+
+  /**
+   * If we're authenticating
+   *
+   * @private
+   */
+  this.authenticating = false
+}
+
+
+
+
+/**
+ * User agent string
+ *
+ * @public
+ * @static
+ */
+TogglClient.USER_AGENT = 'node-toggl v' + VERSION
+
+
+
+
+/**
+ * Return default API client
+ *
+ * @public
+ * @static
+ * @returns {TogglClient}
+ */
+TogglClient.defaultClient = function() {
+  if (!defaultClient) {
+    defaultClient = new TogglClient()
+  }
+
+  return defaultClient
+}
+
+
+
+
+/**
+ * Set default settings for client
+ *
+ * @public
+ * @static
+ * @param {object} newDefaults
+ */
+TogglClient.setDefaults = function(newDefaults) {
+  _.assign(defaults, newDefaults)
+}
+
+
+
+
+/**
+ * Request to Toggl API v8
+ *
+ * @private
+ * @param {string} path API path
+ * @param {object} opts Request options
+ * @param {function} callback Accepts arguments: (err, data)
+ */
+TogglClient.prototype.apiRequest = function(path, opts, callback) {
+  var self = this
+    , options = this.options
+
+  if (this.authenticating) {
+    this.emitter.on('authenticate', function(err) {
+      if (err) {
+        return callback(err)
+      }
+
+      self.apiRequest(path, opts, callback)
+    })
+
+    return
+  }
+  else if (!opts.noauth &amp;&amp; !options.apiToken &amp;&amp; !this.authData) {
+    return callback(new Error('Authenticate first'))
+  }
+
+  if (!opts.noauth) {
+    if (options.apiToken) {
+      opts.auth = {
+        user: options.apiToken,
+        pass: 'api_token'
+      }
+    }
+    else {
+      opts.jar = this.cookieJar
+    }
+  }
+
+  opts.url = options.apiUrl + path
+  opts.json = true
+
+  request(opts, onresponse)
+
+  function onresponse(err, response, data) {
+    var statusCode = response.statusCode
+
+    if (err) {
+      callback(err)
+    }
+    else if (statusCode >= 200 &amp;&amp; statusCode &lt; 300) {
+      callback(null, data)
+    }
+    else {
+      return callback(new APIError(statusCode, data))
+    }
+  }
+}
+
+
+
+
+/**
+ * Make authentication call only if you use username &amp; password
+ *
+ * @see https://github.com/toggl/toggl_api_docs/blob/master/chapters/authentication.md
+ * @public
+ * @param {function} [callback] Accepts arguments: (err, userData)
+ */
+TogglClient.prototype.authenticate = function(callback) {
+  var self = this
+    , options = this.options
+    , auth
+    , req = {}
+
+  callback = callback || noop
+
+  if (options.username &amp;&amp; options.password) {
+    auth = {
+      user: options.username,
+      pass: options.password
+    }
+  }
+  else {
+    return callback(new Error('No need to authenticate thus you use apiToken'))
+  }
+
+  req.auth = auth
+  req.method = 'GET'
+
+  this.apiRequest('/api/v8/me', req, done)
+  this.authenticating = true
+
+  function done(err, data) {
+    self.emitter.emit('authenticate', err, data)
+
+    if (err) {
+      return error(err)
+    }
+
+    self.authData = data
+
+    if (options.reauth) {
+      self.cookieJar._jar.getCookies(options.apiUrl, oncookies)
+    }
+    else {
+      success()
+    }
+  }
+
+  function oncookies(err, cookies) {
+    if (err) {
+      error(err)
+    }
+
+    var sessionCookie = _.find(cookies, {key: options.sessionCookie})
+      , ttl = sessionCookie.ttl()
+
+    if (ttl) {
+      self.setAuthTimer(ttl)
+    }
+
+    success()
+  }
+
+  function success() {
+    self.authenticating = false
+    self.emitter.emit('authenticate', null, self.authData)
+
+    callback(null, self.authData)
+  }
+
+  function error(err) {
+    self.authenticating = false
+    self.emitter.emit('authenticate', err)
+
+    callback(err)
+  }
+}
+
+
+
+
+/**
+ * Call when client is no longer needed
+ *
+ * @public
+ */
+TogglClient.prototype.destroy = function() {
+  if (this.authTimeout) {
+    clearTimeout(this.authTimeout)
+  }
+}
+
+
+
+
+/**
+ * Request to Toggl API v8
+ *
+ * @private
+ * @param {string} path API path
+ * @param {object} opts Request options
+ * @param {function} callback Accepts arguments: (err, data)
+ */
+TogglClient.prototype.reportsRequest = function(path, opts, callback) {
+  var options = this.options
+
+  if (!options.apiToken) {
+    return callback(new Error('API token is not specified. Reports API can\'t be used.'))
+  }
+
+  opts.auth = {
+    user: options.apiToken,
+    pass: 'api_token'
+  }
+  opts.url = options.reportsUrl + path
+  opts.json = true
+  opts.qs = opts.qs || {}
+  opts.qs.user_agent = TogglClient.USER_AGENT
+
+  request(opts, onresponse)
+
+  function onresponse(err, response, data) {
+    var statusCode = response.statusCode
+
+    if (err) {
+      callback(err)
+    }
+    else if (statusCode >= 200 &amp;&amp; statusCode &lt; 300) {
+      callback(null, data)
+    }
+    else if (data.error) {
+      return callback(new ReportError(data.error))
+    }
+    else {
+      return callback(new ReportError('Unknown Reports API error', statusCode, data))
+    }
+  }
+}
+
+
+
+
+/**
+ * Set timer for re-authentication
+ *
+ * @private
+ * @param {number} duration
+ */
+TogglClient.prototype.setAuthTimer = function(duration) {
+  var self = this
+
+  // run re-auth before current session actually expires
+  duration -= 5000
+
+  this.authTimeout = setTimeout(reauth, duration)
+
+  function reauth() {
+    self.authTimeout = null
+    self.authenticate()
+  }
+}
+
+
+
+
+/**
+ * Validate request options
+ *
+ * @private
+ * @param {object|string} schema Validation schema
+ * @param {object} options Request options
+ * @param {function} callback Request callback. If validation error is raised it will be called with error.
+ * @returns {boolean}
+ */
+TogglClient.prototype.validateOptions = function(schema, options, callback) {
+  var error = validate(schema, options)
+
+  if (error) {
+    callback(error)
+    return false
+  }
+
+  return true
+}
+
+
+
+
+/**
+ * Extend TogglClient prototype
+ */
+require('./api/reports')
+require('./api/user')
+require('./api/clients')
+require('./api/projects')
+require('./api/project_users')
+require('./api/tags')
+require('./api/tasks')
+require('./api/time_entries')
+require('./api/workspaces')
+require('./api/workspace_users')</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon Jun 09 2014 18:07:20 GMT+0400 (Russian Standard Time)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
