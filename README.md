@@ -3,6 +3,10 @@ toggl-api
 
 [Toggl](https://www.toggl.com/) API for Node.js. Library is based on official Toggl API [documentation](https://github.com/toggl/toggl_api_docs).
 
+## Installation
+
+    npm install toggl-api --save
+
 ## How to use
 
 ```javascript
@@ -29,13 +33,13 @@ toggl.startTimeEntry({
 })
 ```
 
-## API
+## Documentation
 
-TODO (all the APIs with descriptive JSDoc's are available in [lib/api/*.js](lib/api) files)
+Documentation is available at: http://estliberitas.github.io/toggl-api/
 
 ## TODO
 
-* API documentation
+* Improve documentation
 * Implement High-level API
 * Tests
 * Remove custom data validator
