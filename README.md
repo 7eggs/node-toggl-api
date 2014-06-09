@@ -10,7 +10,6 @@ toggl-api
 ## How to use
 
 ```javascript
-
 var TogglClient = require('toggl-api')
   , toggl = new TogglClient({apiToken: '1971800d4d82861d8f2c1651fea4d212'})
 
