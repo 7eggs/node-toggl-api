@@ -34,7 +34,7 @@ toggl.startTimeEntry({
 
 ## Documentation
 
-Documentation is available at: [http://estliberitas.github.io/toggl-api/](http://estliberitas.github.io/toggl-api/)
+Documentation is available at: [http://7eggs.github.io/toggl-api/](http://7eggs.github.io/toggl-api/)
 
 ## TODO
 
