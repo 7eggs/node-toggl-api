@@ -19,5 +19,8 @@
     "request":                "^2.36.0"
   },
   "devDependencies": {},
-  "author":          "Alexander Makarenko <estliberitas@gmail.com>"
+  "author":          "Alexander Makarenko <estliberitas@gmail.com>",
+  "contributors": [
+    "Mark Dickson Jr <markdicksonjr@gmail.com>"
+  ]
 }
