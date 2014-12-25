@@ -38,7 +38,6 @@ Documentation is available at: [http://7eggs.github.io/node-toggl-api/](http://7
 
 ## TODO
 
-* Improve documentation
-* Implement High-level API
-* Tests
+* TESTS
+* Documentation in Markdown format
 * Remove custom data validator
