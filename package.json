@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "custom-error-generator": "^7.0.0",
-    "lodash": "^2.4.1",
-    "moment": "^2.6.0",
-    "request": "^2.36.0"
+    "moment": "^2.10.6",
+    "object-assign": "^4.0.1",
+    "request": "^2.67.0"
   },
   "devDependencies": {},
   "author": "Alexander Makarenko <estliberitas@gmail.com>",
