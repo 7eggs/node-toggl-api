@@ -1,0 +1,23 @@
+{
+  "preset": "google",
+  "requireCurlyBraces": [
+    "if",
+    "else",
+    "for",
+    "while",
+    "do",
+    "try",
+    "catch"
+  ],
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+  "disallowAnonymousFunctions": true,
+  "disallowMultipleLineBreaks": null,
+  "disallowMultipleVarDecl": true,
+  "disallowSpacesInsideObjectBrackets": null,
+  "disallowKeywordsOnNewLine": [],
+  "maximumLineLength": {
+    "value": 150,
+    "allowComments": true,
+    "allowRegex": true
+  }
+}
