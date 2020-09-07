@@ -1,7 +1,7 @@
 toggl-api
 ==========
 
-[Toggl](https://www.toggl.com/) API for Node.js. Library is based on official Toggl API [documentation](https://github.com/toggl/toggl_api_docs).
+[Toggl track](https://track.toggl.com/) API for Node.js. Library is based on official Toggl API [documentation](https://github.com/toggl/toggl_api_docs).
 
 ## Installation
 
