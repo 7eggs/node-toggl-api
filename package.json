@@ -1,7 +1,7 @@
 {
   "name": "toggl-api",
   "description": "Toggl API for Node.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "./lib/client.js",
   "keywords": [
     "api",
