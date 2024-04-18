@@ -18,7 +18,11 @@
     "object-assign": "^4.0.1",
     "request": "^2.67.0"
   },
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
+    "dotenv": "^16.4.5",
     "jest": "^29.7.0"
   },
   "author": "Alexander Makarenko <estliberitas@gmail.com>",
