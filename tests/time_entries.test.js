@@ -3,38 +3,56 @@ const TogglClient = require('../');
 require('dotenv').config()
 
 describe('Toggl API Client', () => {
-  let toggl;
+  let toggl
+  const workspaceId = Number(process.env.WORKSPACE_ID)
 
   beforeEach(() => {
     toggl = new TogglClient({ apiToken: process.env.API_TOKEN });
   });
+
   afterEach(() => {
     toggl.destroy();
   });
 
+  const newTimeEntry = {
+    description: 'Test entry',
+    workspace_id: workspaceId,
+    duration: -1,
+    start: new Date(Date.now()),
+    stop: null
+  }
+
   it('should start a new time entry', done => {
-    toggl.startTimeEntry({
-      description: 'Test entry',
-      billable: true
-    }, function (err, timeEntry) {
-      expect(timeEntry).toHaveProperty('id');
-      done(err || null);
-    });
-  });
+    toggl.startTimeEntry(newTimeEntry,
+      (err, timeEntry) => {
+        if (err) {
+          return done(err);
+        }
+
+        expect(timeEntry).toHaveProperty('id');
+        return done();
+      })
+  })
 
   it('should start a new time entry, and stop it 3 seconds later', done => {
-    toggl.startTimeEntry({
-      description: 'Test entry',
-      billable: true
-    }, function (err, timeEntry) {
+    toggl.startTimeEntry(newTimeEntry, (err, timeEntry) => {
+      if (err) {
+        return done(err);
+
+      }
       expect(timeEntry).toHaveProperty('id');
 
-      setTimeout(function () {
-        toggl.stopTimeEntry(timeEntry.id, function (err) {
-          const duration = -timeEntry.duration + Date.now() / 1_000
-          expect(duration).toBeGreaterThan(2);
-          done(err || null);
-        });
+      setTimeout(() => {
+        toggl.stopTimeEntry(workspaceId, timeEntry.id,
+          (err, timeEntry) => {
+            if (err) {
+              return done(err);
+            }
+
+            const duration = -timeEntry.duration + Date.now() / 1_000
+            expect(duration).toBeGreaterThan(2);
+            done();
+          });
       }, 3_000);
     });
   });
