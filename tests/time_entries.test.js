@@ -38,15 +38,29 @@ describe('Toggl API Client', () => {
       })
   })
 
-  it('should start a new time entry, and stop it 3 seconds later', async () => {
+  it.only('should start a new time entry, edit it, stop it, delete it', async () => {
     const timeEntry = await togglClient.startTimeEntry(newTimeEntry)
     expect(timeEntry).toHaveProperty('id');
 
+
+    const dataToUpdate = {
+      description: 'Test entry updated',
+      workspace_id: workspaceId,
+      id: timeEntry.id
+    }
+
+    await togglClient.updateTimeEntry(workspaceId, timeEntry.id, dataToUpdate)
+    const updatedEntry = await togglClient.getTimeEntryData(timeEntry.id)
+    expect(updatedEntry.description).toBe('Test entry updated')
+
     await sleep(3_000)
 
-    const deletedEntry = await togglClient.stopTimeEntry(workspaceId, timeEntry.id)
-    const duration = -deletedEntry.duration + Date.now() / 1_000
+    const stoppedEntry = await togglClient.stopTimeEntry(workspaceId, timeEntry.id)
+    const duration = -stoppedEntry.duration + Date.now() / 1_000
     expect(duration).toBeGreaterThan(2);
+
+    const deletedEntry = await togglClient.deleteTimeEntry(workspaceId, timeEntry.id)
+    expect(deletedEntry).toBeUndefined()
   });
 });
 
