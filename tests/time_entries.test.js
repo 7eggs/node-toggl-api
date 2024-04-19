@@ -2,6 +2,10 @@
 const TogglClient = require('../');
 require('dotenv').config()
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 describe('Toggl API Client', () => {
   let togglClient
   const workspaceId = Number(process.env.WORKSPACE_ID)
@@ -34,32 +38,15 @@ describe('Toggl API Client', () => {
       })
   })
 
-  it('should start a new time entry (with promise)', async () => {
+  it('should start a new time entry, and stop it 3 seconds later', async () => {
     const timeEntry = await togglClient.startTimeEntry(newTimeEntry)
     expect(timeEntry).toHaveProperty('id');
-  })
 
-  it('should start a new time entry, and stop it 3 seconds later', done => {
-    togglClient.startTimeEntry(newTimeEntry, (err, timeEntry) => {
-      if (err) {
-        return done(err);
+    await sleep(3_000)
 
-      }
-      expect(timeEntry).toHaveProperty('id');
-
-      setTimeout(() => {
-        togglClient.stopTimeEntry(workspaceId, timeEntry.id,
-          (err, timeEntry) => {
-            if (err) {
-              return done(err);
-            }
-
-            const duration = -timeEntry.duration + Date.now() / 1_000
-            expect(duration).toBeGreaterThan(2);
-            done();
-          });
-      }, 3_000);
-    });
+    const deletedEntry = await togglClient.stopTimeEntry(workspaceId, timeEntry.id)
+    const duration = -deletedEntry.duration + Date.now() / 1_000
+    expect(duration).toBeGreaterThan(2);
   });
 });
 
