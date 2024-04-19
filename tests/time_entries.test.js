@@ -3,17 +3,8 @@ const TogglClient = require('../');
 require('dotenv').config()
 
 describe('Toggl API Client', () => {
-  let toggl
+  let togglClient
   const workspaceId = Number(process.env.WORKSPACE_ID)
-
-  beforeEach(() => {
-    toggl = new TogglClient({ apiToken: process.env.API_TOKEN });
-  });
-
-  afterEach(() => {
-    toggl.destroy();
-  });
-
   const newTimeEntry = {
     description: 'Test entry',
     workspace_id: workspaceId,
@@ -22,8 +13,17 @@ describe('Toggl API Client', () => {
     stop: null
   }
 
-  it('should start a new time entry', done => {
-    toggl.startTimeEntry(newTimeEntry,
+  beforeEach(() => {
+    togglClient = new TogglClient({ apiToken: process.env.API_TOKEN });
+  });
+
+  afterEach(() => {
+    togglClient.destroy();
+  });
+
+
+  it('should start a new time entry (with callback)', done => {
+    togglClient.startTimeEntry(newTimeEntry,
       (err, timeEntry) => {
         if (err) {
           return done(err);
@@ -34,8 +34,13 @@ describe('Toggl API Client', () => {
       })
   })
 
+  it('should start a new time entry (with promise)', async () => {
+    const timeEntry = await togglClient.startTimeEntry(newTimeEntry)
+    expect(timeEntry).toHaveProperty('id');
+  })
+
   it('should start a new time entry, and stop it 3 seconds later', done => {
-    toggl.startTimeEntry(newTimeEntry, (err, timeEntry) => {
+    togglClient.startTimeEntry(newTimeEntry, (err, timeEntry) => {
       if (err) {
         return done(err);
 
@@ -43,7 +48,7 @@ describe('Toggl API Client', () => {
       expect(timeEntry).toHaveProperty('id');
 
       setTimeout(() => {
-        toggl.stopTimeEntry(workspaceId, timeEntry.id,
+        togglClient.stopTimeEntry(workspaceId, timeEntry.id,
           (err, timeEntry) => {
             if (err) {
               return done(err);
