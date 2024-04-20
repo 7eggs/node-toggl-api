@@ -6,7 +6,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-describe('Toggl API Client', () => {
+describe('Testing Time Entries', () => {
   let togglClient
   const workspaceId = Number(process.env.WORKSPACE_ID)
   const newTimeEntry = {
@@ -38,7 +38,7 @@ describe('Toggl API Client', () => {
       })
   })
 
-  it.only('should start a new time entry, edit it, stop it, delete it', async () => {
+  it('should start a new time entry, edit it, stop it, delete it', async () => {
     const timeEntry = await togglClient.startTimeEntry(newTimeEntry)
     expect(timeEntry).toHaveProperty('id');
 
