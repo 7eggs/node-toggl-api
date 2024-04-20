@@ -26,6 +26,11 @@ describe('Testing Time Entries', () => {
   });
 
 
+  it('should create a new time entry', async () => {
+    const timeEntry = await togglClient.startTimeEntry(newTimeEntry)
+    expect(timeEntry).toHaveProperty('id');
+  })
+
   it('should start a new time entry (with callback)', done => {
     togglClient.startTimeEntry(newTimeEntry,
       (err, timeEntry) => {
@@ -53,6 +58,9 @@ describe('Testing Time Entries', () => {
     const updatedEntry = await togglClient.getTimeEntryData(timeEntry.id)
     expect(updatedEntry.description).toBe('Test entry updated')
 
+    const currentTimeEntry = await togglClient.getCurrentTimeEntry()
+    expect(currentTimeEntry.id).toBe(updatedEntry.id)
+
     await sleep(3_000)
 
     const stoppedEntry = await togglClient.stopTimeEntry(workspaceId, timeEntry.id)
@@ -61,6 +69,33 @@ describe('Testing Time Entries', () => {
 
     const deletedEntry = await togglClient.deleteTimeEntry(workspaceId, timeEntry.id)
     expect(deletedEntry).toBeUndefined()
-  });
+  })
+
+  it('should get time entries', async () => {
+    const timeEntries = await togglClient.getTimeEntries()
+    expect(timeEntries).toBeInstanceOf(Array)
+  })
+
+
+  it('should add, edit and remote tag entry tags', async () => {
+    const timeEntry = await togglClient.startTimeEntry(newTimeEntry)
+    expect(timeEntry).toHaveProperty('id');
+
+    const tags = ['tag1', 'tag2']
+    await togglClient.addTimeEntryTags(workspaceId, timeEntry.id, tags)
+
+    await sleep(300)
+
+    const timeEntryData = await togglClient.getTimeEntryData(timeEntry.id)
+    expect(timeEntryData.tags).toEqual(tags)
+
+    await togglClient.removeTimeEntryTags(workspaceId, timeEntry.id, tags)
+
+    await sleep(300)
+
+    const timeEntryData2 = await togglClient.getTimeEntryData(timeEntry.id)
+    expect(timeEntryData2.tags).toEqual([])
+
+  })
 });
 
