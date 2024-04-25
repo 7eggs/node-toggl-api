@@ -26,8 +26,13 @@ describe('Testing Time Entries', () => {
   });
 
 
-  it('should create a new time entry', async () => {
+  it('should start a new time entry', async () => {
     const timeEntry = await togglClient.startTimeEntry(newTimeEntry)
+    expect(timeEntry).toHaveProperty('id');
+  })
+
+  it('should CREATE a new time entry', async () => {
+    const timeEntry = await togglClient.createTimeEntry(newTimeEntry)
     expect(timeEntry).toHaveProperty('id');
   })
 
@@ -73,6 +78,15 @@ describe('Testing Time Entries', () => {
 
   it('should get time entries', async () => {
     const timeEntries = await togglClient.getTimeEntries()
+    expect(timeEntries).toBeInstanceOf(Array)
+  })
+
+
+  it('should get time entries with starting and ending dates', async () => {
+    const timeEntries = await togglClient.getTimeEntries(
+      '2024-01-25T11:36:00+00:00',
+      '2024-04-25T15:36:00+00:00'
+    )
     expect(timeEntries).toBeInstanceOf(Array)
   })
 
