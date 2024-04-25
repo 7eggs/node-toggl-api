@@ -39,6 +39,7 @@ Documentation is available at: [http://7eggs.github.io/node-toggl-api/](http://7
 ## TODO
 
 * TESTS
+* Update argument quantity logic on all calls
 * Documentation in Markdown format
 * Remove custom data validator
 * v9 migration
