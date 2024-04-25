@@ -7,6 +7,7 @@ require('dotenv').config()
 describe('Testing Workspaces', () => {
     let togglClient
     const workspaceId = Number(process.env.WORKSPACE_ID)
+    const organizationId = Number(process.env.ORGANIZATION_ID)
 
     beforeEach(() => {
         togglClient = new TogglClient({ apiToken: process.env.API_TOKEN });
@@ -27,7 +28,7 @@ describe('Testing Workspaces', () => {
         expect(workspace.id).toBe(workspaceId)
     })
 
-    it.skip('should get workspace clients', async () => {
+    it('should get workspace clients', async () => {
         const clients = await togglClient.getWorkspaceClients(workspaceId)
         expect(clients).toBeInstanceOf(Array)
     })
@@ -48,7 +49,7 @@ describe('Testing Workspaces', () => {
     })
 
     it('should get workspace users', async () => {
-        const users = await togglClient.getWorkspaceUsers(workspaceId)
+        const users = await togglClient.getWorkspaceUsers(organizationId, workspaceId)
         expect(users).toBeInstanceOf(Array)
     })
 
