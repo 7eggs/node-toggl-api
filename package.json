@@ -18,7 +18,8 @@
     "request": "^2.67.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "devDependencies": {
     "dotenv": "^16.4.5",
