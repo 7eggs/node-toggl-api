@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "custom-error-generator": "^7.0.0",
-    "moment": "^2.10.6",
     "object-assign": "^4.0.1",
     "request": "^2.67.0"
   },
