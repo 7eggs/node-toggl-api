@@ -19,7 +19,7 @@ describe('Testing Invitations', () => {
     togglClient.destroy();
   });
 
-  it.only('should create a new organization invitation', async () => {
+  it('should create a new organization invitation', async () => {
     const emails = ['clicnet.com.br@gmail.com']
     const workspaces = [{
       workspace_id: workspaceId,
