@@ -3,7 +3,8 @@
         "target": "ES6",
         "module": "commonjs",
         "checkJs": true,
-        "allowJs": true
+        "allowJs": true,
+        "resolveJsonModule": true
     },
     "include": [
         "./**/*"
