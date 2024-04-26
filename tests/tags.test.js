@@ -9,12 +9,9 @@ function sleep(ms) {
 describe('Testing Tags', () => {
   let togglClient
   const workspaceId = Number(process.env.WORKSPACE_ID)
-  const newTimeEntry = {
-    description: 'Test entry',
-    workspace_id: workspaceId,
-    duration: -1,
-    start: new Date(Date.now()),
-    stop: null
+  const newTag = {
+    name: 'Test tag',
+    wid: workspaceId
   }
 
   beforeEach(() => {
@@ -29,6 +26,11 @@ describe('Testing Tags', () => {
     const tags = await togglClient.getTags(workspaceId)
     expect(tags).toBeInstanceOf(Array);
     expect(tags[0]).toHaveProperty('id');
+  })
+
+  it.only('should create a new tag', async () => {
+    const tag = await togglClient.createTag(newTag.name, newTag.wid)
+    expect(tag).toHaveProperty('id');
   })
 
 });
