@@ -39,5 +39,13 @@ Documentation is available at: [http://7eggs.github.io/node-toggl-api/](http://7
 ## TODO
 
 * TESTS
+* Update argument quantity logic on all calls
 * Documentation in Markdown format
 * Remove custom data validator
+* v9 migration
+  * add support for new endpoints:
+    * /workspaces/{workspace_id}/clients/{client_id}/archive
+    * /workspaces/{workspace_id}/clients/{client_id}/restore
+    * /organizations/{organization_id}/invitations/{invitation_code}/resend
+    * /organizations/invitations/{invitation_code}/accept
+    * /organizations/invitations/{invitation_code}/reject
