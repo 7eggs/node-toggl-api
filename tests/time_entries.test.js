@@ -76,6 +76,33 @@ describe('Testing Time Entries', () => {
     expect(deletedEntry).toBeUndefined()
   })
 
+  it('should start 2 new time entry, edit it in BULK, stop it', async () => {
+    const timeEntry1 = await togglClient.startTimeEntry(newTimeEntry)
+    expect(timeEntry1).toHaveProperty('id');
+    const timeEntry2 = await togglClient.startTimeEntry(newTimeEntry)
+    expect(timeEntry2).toHaveProperty('id');
+
+    const dataToUpdate = [
+      {
+        "op": "replace",
+        "path": "/description",
+        "value": "Test entry updated 123"
+      }
+    ]
+
+    await togglClient.updateTimeEntries(workspaceId, [timeEntry1.id, timeEntry2.id], dataToUpdate)
+
+    const updatedEntry1 = await togglClient.getTimeEntryData(timeEntry1.id)
+    expect(updatedEntry1.description).toBe('Test entry updated 123')
+    const updatedEntry2 = await togglClient.getTimeEntryData(timeEntry2.id)
+    expect(updatedEntry2.description).toBe('Test entry updated 123')
+
+    const deletedEntry1 = await togglClient.deleteTimeEntry(workspaceId, timeEntry1.id)
+    expect(deletedEntry1).toBeUndefined()
+    const deletedEntry2 = await togglClient.deleteTimeEntry(workspaceId, timeEntry2.id)
+    expect(deletedEntry2).toBeUndefined()
+  })
+
   it('should get time entries', async () => {
     const timeEntries = await togglClient.getTimeEntries()
     expect(timeEntries).toBeInstanceOf(Array)
@@ -84,8 +111,8 @@ describe('Testing Time Entries', () => {
 
   it('should get time entries with starting and ending dates', async () => {
     const timeEntries = await togglClient.getTimeEntries(
-      '2024-01-25T11:36:00+00:00',
-      '2024-04-25T15:36:00+00:00'
+      '2024-03-25T11:36:00+00:00',
+      '2024-05-25T15:36:00+00:00'
     )
     expect(timeEntries).toBeInstanceOf(Array)
   })
