@@ -1,10 +1,10 @@
 'use strict';
-const TogglClient = require('../');
-require('dotenv').config()
+const TogglClient = require('../../');
+const { describeLive } = require('../helpers/live');
 
 
 
-describe('Testing Workspaces', () => {
+describeLive('Testing Workspaces', () => {
     let togglClient
     const workspaceId = Number(process.env.WORKSPACE_ID)
     const organizationId = Number(process.env.ORGANIZATION_ID)

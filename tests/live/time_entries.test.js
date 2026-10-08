@@ -1,12 +1,12 @@
 'use strict';
-const TogglClient = require('../');
-require('dotenv').config()
+const TogglClient = require('../../');
+const { describeLive } = require('../helpers/live');
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-describe('Testing Time Entries', () => {
+describeLive('Testing Time Entries', () => {
   let togglClient
   const workspaceId = Number(process.env.WORKSPACE_ID)
   const newTimeEntry = {
