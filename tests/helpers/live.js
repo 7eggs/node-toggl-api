@@ -8,6 +8,9 @@ require('dotenv').config();
  */
 const enabled = Boolean(process.env.API_TOKEN);
 
+// real requests are slow and the API is rate limited
+jest.setTimeout(30000);
+
 module.exports = {
   describeLive: enabled ? describe : describe.skip,
   workspaceId: Number(process.env.WORKSPACE_ID),
