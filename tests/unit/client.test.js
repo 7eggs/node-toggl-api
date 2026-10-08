@@ -195,6 +195,11 @@ describe('TogglClient core', () => {
       });
     });
 
+    it('uses the message field of JSON error bodies', async () => {
+      ctx.server.respond({ status: 429, body: { message: 'Too many requests' } });
+      await expect(ctx.toggl.apiRequest('me')).rejects.toMatchObject({ code: 429, message: 'Too many requests' });
+    });
+
     it('keeps legacy array error bodies in errors', async () => {
       ctx.server.respond({ status: 400, body: ['first', 'second'] });
       await expect(ctx.toggl.apiRequest('me')).rejects.toMatchObject({

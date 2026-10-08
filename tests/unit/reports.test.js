@@ -30,6 +30,11 @@ describe('Reports', () => {
       result: { data: [{ id: 1 }], nextId: 77, nextRowNumber: 51 }
     },
     {
+      name: 'detailedReportPage(wid)',
+      call: (t, ...cb) => t.detailedReportPage(1, ...cb),
+      method: 'POST', path: '/reports/api/v3/workspace/1/search/time_entries', body: {}
+    },
+    {
       name: 'detailedReportPage(wid, options) on the last page',
       call: (t, ...cb) => t.detailedReportPage(1, range, ...cb),
       method: 'POST', path: '/reports/api/v3/workspace/1/search/time_entries', body: range,
