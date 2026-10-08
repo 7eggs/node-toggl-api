@@ -1,34 +1,25 @@
 'use strict';
 const TogglClient = require('../../');
-const { describeLive } = require('../helpers/live');
+const { describeLive, workspaceId, organizationId } = require('../helpers/live');
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+// Creates a real invitation, so it only runs when INVITE_EMAIL is set
+const itInvites = process.env.INVITE_EMAIL ? it : it.skip
 
 describeLive('Testing Invitations', () => {
   let togglClient
-  const workspaceId = Number(process.env.WORKSPACE_ID)
-  const organizationId = Number(process.env.ORGANIZATION_ID)
 
   beforeEach(() => {
     togglClient = new TogglClient({ apiToken: process.env.API_TOKEN });
   });
 
-  afterEach(() => {
-    togglClient.destroy();
-  });
-
-  it('should create a new organization invitation', async () => {
-    const emails = ['clicnet.com.br@gmail.com']
-    const workspaces = [{
-      workspace_id: workspaceId,
-    }]
-
-    const invitations = await togglClient.inviteUsers(organizationId, workspaces, emails)
+  itInvites('should create a new organization invitation', async () => {
+    const invitations = await togglClient.inviteUsers(organizationId, [workspaceId],
+      [process.env.INVITE_EMAIL], { skip_email: true })
     expect(invitations).toHaveProperty('messages');
-
   })
 
+  it('should reject an unknown invitation code', async () => {
+    await expect(togglClient.getInvitation('not-a-real-invitation-code'))
+      .rejects.toMatchObject({ name: 'APIError' })
+  })
 });
-
