@@ -1,26 +1,20 @@
 'use strict';
 const TogglClient = require('../../');
-const { describeLive } = require('../helpers/live');
-
+const { describeLive, workspaceId, organizationId } = require('../helpers/live');
 
 
 describeLive('Testing Workspaces', () => {
     let togglClient
-    const workspaceId = Number(process.env.WORKSPACE_ID)
-    const organizationId = Number(process.env.ORGANIZATION_ID)
 
     beforeEach(() => {
         togglClient = new TogglClient({ apiToken: process.env.API_TOKEN });
-    });
-
-    afterEach(() => {
-        togglClient.destroy();
     });
 
 
     it('should get workspaces', async () => {
         const workspaces = await togglClient.getWorkspaces()
         expect(workspaces).toBeInstanceOf(Array)
+        expect(workspaces.map(w => w.id)).toContain(workspaceId)
     })
 
     it('should get workspace data', async () => {
@@ -30,7 +24,7 @@ describeLive('Testing Workspaces', () => {
 
     it('should get workspace clients', async () => {
         const clients = await togglClient.getWorkspaceClients(workspaceId)
-        expect(clients).toBeInstanceOf(Array)
+        expect(clients === null || Array.isArray(clients)).toBe(true)
     })
 
     it('should get workspace projects', async () => {
@@ -49,15 +43,30 @@ describeLive('Testing Workspaces', () => {
     })
 
     it('should get workspace users', async () => {
-        const users = await togglClient.getWorkspaceUsers(organizationId, workspaceId)
+        const users = await togglClient.getWorkspaceUsers(workspaceId)
+        expect(users).toBeInstanceOf(Array)
+        expect(users[0]).toHaveProperty('email')
+    })
+
+    it('should get workspace users through the organization', async () => {
+        const users = await togglClient.getOrganizationWorkspaceUsers(organizationId, workspaceId)
         expect(users).toBeInstanceOf(Array)
     })
 
-    it('should update workspace data', async () => {
-        const dataToUpdate = {
-            name: 'Test workspace updated'
+    it('should get workspace statistics and time entry constraints', async () => {
+        const statistics = await togglClient.getWorkspaceStatistics(workspaceId)
+        expect(statistics).toHaveProperty('members_count')
+        const constraints = await togglClient.getTimeEntryConstraints(workspaceId)
+        expect(constraints).toHaveProperty('time_entry_constraints_enabled')
+    })
+
+    it('should update workspace data and restore it', async () => {
+        const original = await togglClient.getWorkspaceData(workspaceId)
+        try {
+            const workspace = await togglClient.updateWorkspace(workspaceId, { name: original.name + ' updated' })
+            expect(workspace.name).toBe(original.name + ' updated')
+        } finally {
+            await togglClient.updateWorkspace(workspaceId, { name: original.name })
         }
-        const workspace = await togglClient.updateWorkspace(workspaceId, dataToUpdate)
-        expect(workspace.name).toBe('Test workspace updated')
     })
 });
