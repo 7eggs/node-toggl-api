@@ -11,8 +11,9 @@ describeLive('Testing Projects and Tasks', () => {
 
   it('should create a project, update it, list it and delete it', async () => {
     const name = `node-toggl-api project ${Date.now()}`
-    const project = await togglClient.createProject(workspaceId, { name, active: true })
+    const project = await togglClient.createProject(workspaceId, { name })
     expect(project).toHaveProperty('id')
+    expect(project.active).toBe(true)
 
     try {
       const loaded = await togglClient.getProjectData(workspaceId, project.id)

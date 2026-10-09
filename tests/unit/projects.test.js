@@ -31,7 +31,12 @@ describe('Projects', () => {
     {
       name: 'createProject(wid, data)',
       call: (t, ...cb) => t.createProject(1, { name: 'P', is_private: true }, ...cb),
-      method: 'POST', path: '/api/v9/workspaces/1/projects', body: { name: 'P', is_private: true }
+      method: 'POST', path: '/api/v9/workspaces/1/projects', body: { active: true, name: 'P', is_private: true }
+    },
+    {
+      name: 'createProject(wid, data) with active: false',
+      call: (t, ...cb) => t.createProject(1, { name: 'P', active: false }, ...cb),
+      method: 'POST', path: '/api/v9/workspaces/1/projects', body: { name: 'P', active: false }
     },
     {
       name: 'getProjectData(wid, id)',
