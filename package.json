@@ -1,8 +1,12 @@
 {
   "name": "toggl-api",
-  "description": "Toggl API for Node.js",
+  "description": "Toggl Track API v9 client for Node.js",
   "version": "2.0.0-beta.0",
   "main": "./lib/client.js",
+  "files": [
+    "lib",
+    "CHANGELOG.md"
+  ],
   "engines": {
     "node": ">=18"
   },
@@ -13,7 +17,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/7eggs/node-toggl-api.git"
+    "url": "git+https://github.com/7eggs/node-toggl-api.git"
+  },
+  "homepage": "https://github.com/7eggs/node-toggl-api#readme",
+  "bugs": {
+    "url": "https://github.com/7eggs/node-toggl-api/issues"
   },
   "scripts": {
     "test": "jest tests/unit",
@@ -29,5 +37,6 @@
   "contributors": [
     "Mark Dickson Jr <markdicksonjr@gmail.com>",
     "Rafael Figueira Goncalves <clicnet.com.br@gmail.com>"
-  ]
+  ],
+  "license": "MIT"
 }
