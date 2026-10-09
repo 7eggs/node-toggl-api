@@ -88,7 +88,7 @@ Toggl limits how many requests you can make per hour, per organization, dependin
 
 ### Reports
 
-Reports take the workspace ID and the [v3 filters](https://engineering.toggl.com/docs/track/reports/detailed_reports):
+Reports take the workspace ID and the [v3 filters](https://engineering.toggl.com/docs/track/reports/detailed_reports). ID lists such as `user_ids` and `project_ids` take numbers or numeric strings:
 
 ```javascript
 const range = { start_date: '2024-01-01', end_date: '2024-01-31' };

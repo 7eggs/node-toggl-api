@@ -111,6 +111,21 @@ describe('Reports', () => {
     expect(error).toMatchObject({ code: 400, message: 'start_date must be before end_date' });
   });
 
+  it('sends numeric string IDs in ID filters as numbers', async () => {
+    const options = Object.assign({ user_ids: ['1757147', 1757126], tag_ids: [null, '5'], description: '42' }, range);
+    await ctx.toggl.detailedReport(1, options);
+    expect(ctx.server.last().body).toEqual(Object.assign({}, range, {
+      user_ids: [1757147, 1757126], tag_ids: [null, 5], description: '42'
+    }));
+    expect(options.user_ids).toEqual(['1757147', 1757126]);
+
+    await ctx.toggl.exportSummaryReport(1, 'pdf', Object.assign({ project_ids: ['9'] }, range));
+    expect(ctx.server.last().body.project_ids).toEqual([9]);
+
+    await ctx.toggl.detailedReportPage(1, Object.assign({ client_ids: ['3'] }, range));
+    expect(ctx.server.last().body.client_ids).toEqual([3]);
+  });
+
   it('parses export errors instead of returning them as a file', async () => {
     ctx.server.respond({ status: 402, raw: 'Feature not available', contentType: 'text/plain' });
     await expect(ctx.toggl.exportDetailedReport(1, 'pdf', range))

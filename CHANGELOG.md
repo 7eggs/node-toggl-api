@@ -39,6 +39,7 @@ Moves the library to the [Track API v9](https://engineering.toggl.com/docs/track
 - `startTimeEntry` and `createTimeEntry` no longer change the data passed in.
 - `createProject` creates active projects unless `data.active` says otherwise. v9 archives a project created without it, and an archived project can't take tasks.
 - `updateTimeEntryTags` sends `'remove'` when given `'delete'`. Toggl's spec documents `'delete'`, but the API ignores it and replaces the entry's tags.
+- Report ID filters (`user_ids`, `project_ids`, ...) given as numeric strings are sent as numbers. v3 rejects `["123"]` with a 400, and the v2 reports answered `user_ids` with a 500 ([#13](https://github.com/7eggs/node-toggl-api/issues/13)).
 - `detailedReportPage(workspaceId, callback)` sent the callback as the request body and never called it.
 - Callbacks run outside the promise chain, so an exception thrown in a callback is not reported as a rejection.
 
