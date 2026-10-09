@@ -13,7 +13,6 @@ Moves the library to the [Track API v9](https://engineering.toggl.com/docs/track
 - Reports use API v3. Report methods take the workspace ID and v3 filters (`start_date`, `end_date`, `project_ids`, ...), sent as a JSON body. Exports resolve with the file as a `Buffer`.
 - `getWorkspaceUsers(workspaceId)` lists the workspace users, as in v8. The organization endpoint moved to `getOrganizationWorkspaceUsers(organizationId, workspaceId)`.
 - `createTimeEntry` records a finished entry. It used to force `duration: -1`, which started a running entry like `startTimeEntry`.
-- `removeTimeEntryTags` sends `tag_action: 'delete'`, the value v9 accepts. `'remove'` is only valid in bulk updates.
 - Resending an invitation is `resendInvitation(organizationId, invitationId)`. It used to be a second method named `inviteUsers`, which replaced the invite method.
 - `addProjectUser(workspaceId, projectId, userId, [options])` replaces the old overloaded argument list and no longer sends the v8 `fields` parameter.
 - Credentials are sent with HTTP Basic auth on every request. Session cookies and the `reauth` and `sessionCookie` options are gone. `destroy()` still exists but does nothing.
@@ -38,6 +37,8 @@ Moves the library to the [Track API v9](https://engineering.toggl.com/docs/track
 - `resetApiToken` switches the client to the new token when used with a promise too, not only with a callback.
 - `changeUserPassword` passes the unknown password error to the promise as well as the callback.
 - `startTimeEntry` and `createTimeEntry` no longer change the data passed in.
+- `createProject` creates active projects unless `data.active` says otherwise. v9 archives a project created without it, and an archived project can't take tasks.
+- `updateTimeEntryTags` sends `'remove'` when given `'delete'`. Toggl's spec documents `'delete'`, but the API ignores it and replaces the entry's tags.
 - `detailedReportPage(workspaceId, callback)` sent the callback as the request body and never called it.
 - Callbacks run outside the promise chain, so an exception thrown in a callback is not reported as a rejection.
 
