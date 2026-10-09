@@ -49,9 +49,10 @@ describeLive('Testing Projects and Tasks', () => {
       try {
         task = await togglClient.createTask(workspaceId, project.id, 'Task 1')
       } catch (err) {
-        // tasks are a paid feature, but a spent API quota is a 402 too
+        // tasks are a paid feature: Free workspaces get a 403, even for
+        // admins. A spent API quota is a 402, so that must not pass here
         expect(err.message).not.toMatch(/hourly limit/)
-        expect(err.code).toBe(402)
+        expect([402, 403]).toContain(err.code)
         return
       }
 
