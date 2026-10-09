@@ -2,7 +2,7 @@
 
 ## 2.0.0
 
-Moves the library to the [Track API v9](https://engineering.toggl.com/docs/track/) and the [Reports API v3](https://engineering.toggl.com/docs/track/reports_start). Toggl has shut down API v8, which 1.x used, so 1.x no longer works. These notes compare 2.0.0 with 1.0.2 and the 2.0.0 betas.
+Moves the library to the [Track API v9](https://engineering.toggl.com/docs/track/) and the [Reports API v3](https://engineering.toggl.com/docs/track/reports_start). Toggl has shut down API v8, which 1.x used, so 1.x no longer works ([#24](https://github.com/7eggs/node-toggl-api/issues/24)). These notes compare 2.0.0 with 1.0.2 and the 2.0.0 betas.
 
 ### Breaking changes
 
@@ -10,12 +10,12 @@ Moves the library to the [Track API v9](https://engineering.toggl.com/docs/track
 - Workspace-scoped methods take the workspace ID first, matching the URL, e.g. `createClient(workspaceId, data)`, `updateProject(workspaceId, projectId, data)`, `deleteWorkspaceUser(workspaceId, wuId)`. Tasks live under their project: `createTask(workspaceId, projectId, data)`, `getTaskData(workspaceId, projectId, taskId)`.
 - Request bodies are sent flat, as v9 expects, instead of wrapped in `{client: ...}`, `{project: ...}`, `{user: ...}` and so on.
 - `stopTimeEntry`, `updateTimeEntry` and `deleteTimeEntry` take the workspace ID. `startTimeEntry` and `createTimeEntry` read it from `data.workspace_id` (or `data.wid`).
-- Reports use API v3. Report methods take the workspace ID and v3 filters (`start_date`, `end_date`, `project_ids`, ...), sent as a JSON body. Exports resolve with the file as a `Buffer`.
+- Reports use API v3. Report methods take the workspace ID and v3 filters (`start_date`, `end_date`, `project_ids`, ...), sent as a JSON body. Exports (`csv`, `xlsx`, `pdf`) resolve with the file as a `Buffer` ([#12](https://github.com/7eggs/node-toggl-api/issues/12)).
 - `getWorkspaceUsers(workspaceId)` lists the workspace users, as in v8. The organization endpoint moved to `getOrganizationWorkspaceUsers(organizationId, workspaceId)`.
 - `createTimeEntry` records a finished entry. It used to force `duration: -1`, which started a running entry like `startTimeEntry`.
 - Resending an invitation is `resendInvitation(organizationId, invitationId)`. It used to be a second method named `inviteUsers`, which replaced the invite method.
 - `addProjectUser(workspaceId, projectId, userId, [options])` replaces the old overloaded argument list and no longer sends the v8 `fields` parameter.
-- Credentials are sent with HTTP Basic auth on every request. Session cookies and the `reauth` and `sessionCookie` options are gone. `destroy()` still exists but does nothing.
+- Credentials are sent with HTTP Basic auth on every request. `authenticate()` works with an API token too and resolves with the current user, `id` included ([#8](https://github.com/7eggs/node-toggl-api/issues/8)). Session cookies and the `reauth` and `sessionCookie` options are gone. `destroy()` still exists but does nothing.
 - `APIError` and `ReportError` are plain `Error` subclasses with `code` (the HTTP status), `message` and `data`. `ReportError` extends `APIError`.
 - `createUser` signs up through accounts.toggl.com (the `accountsUrl` option).
 
