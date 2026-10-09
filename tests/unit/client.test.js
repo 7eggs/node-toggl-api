@@ -197,7 +197,8 @@ describe('TogglClient core', () => {
 
     it('uses the message field of JSON error bodies', async () => {
       ctx.server.respond({ status: 429, body: { message: 'Too many requests' } });
-      await expect(ctx.toggl.apiRequest('me')).rejects.toMatchObject({ code: 429, message: 'Too many requests' });
+      const toggl = ctx.server.client({ retries: 0 });
+      await expect(toggl.apiRequest('me')).rejects.toMatchObject({ code: 429, message: 'Too many requests' });
     });
 
     it('keeps legacy array error bodies in errors', async () => {
@@ -233,6 +234,79 @@ describe('TogglClient core', () => {
     it('exposes the error classes on the client', () => {
       expect(TogglClient.APIError).toBe(APIError);
       expect(TogglClient.ReportError).toBe(ReportError);
+    });
+  });
+
+  describe('rate limiting', () => {
+    function tooFastThen(times, reply, headers) {
+      let calls = 0;
+      return () => (calls++ < times ? { status: 429, raw: 'Too Many Requests', contentType: 'text/html', headers } : reply);
+    }
+
+    it('retries requests rejected with a 429 and resolves with the answer', async () => {
+      ctx.server.respond(tooFastThen(2, { body: { id: 1 } }));
+      const toggl = ctx.server.client({ retryDelay: 1 });
+
+      await expect(toggl.apiRequest('things', { method: 'POST', body: { a: 1 } })).resolves.toEqual({ id: 1 });
+
+      expect(ctx.server.requests).toHaveLength(3);
+      expect(ctx.server.requests.map(r => r.body)).toEqual([{ a: 1 }, { a: 1 }, { a: 1 }]);
+    });
+
+    it('rejects with the 429 once the retries are used up', async () => {
+      ctx.server.respond(tooFastThen(10, { body: {} }));
+      const toggl = ctx.server.client({ retries: 2, retryDelay: 1 });
+
+      await expect(toggl.apiRequest('me')).rejects.toMatchObject({ name: 'APIError', code: 429 });
+      expect(ctx.server.requests).toHaveLength(3);
+    });
+
+    it('retries 3 times by default', async () => {
+      ctx.server.respond(tooFastThen(10, { body: {} }));
+      const toggl = ctx.server.client({ retryDelay: 1 });
+
+      await expect(toggl.apiRequest('me')).rejects.toMatchObject({ code: 429 });
+      expect(ctx.server.requests).toHaveLength(4);
+    });
+
+    it('does not retry when retries is 0', async () => {
+      ctx.server.respond(tooFastThen(10, { body: {} }));
+      const toggl = ctx.server.client({ retries: 0 });
+
+      await expect(toggl.apiRequest('me')).rejects.toMatchObject({ code: 429 });
+      expect(ctx.server.requests).toHaveLength(1);
+    });
+
+    it('waits as long as Retry-After says instead of retryDelay', async () => {
+      ctx.server.respond(tooFastThen(1, { body: { id: 1 } }, { 'Retry-After': '0' }));
+      const toggl = ctx.server.client({ retryDelay: 60000 });
+
+      await expect(toggl.apiRequest('me')).resolves.toEqual({ id: 1 });
+    });
+
+    it('doubles the wait on each retry', async () => {
+      ctx.server.respond(tooFastThen(2, { body: {} }));
+      const toggl = ctx.server.client({ retryDelay: 100 });
+
+      const start = Date.now();
+      await toggl.apiRequest('me');
+      expect(Date.now() - start).toBeGreaterThanOrEqual(290);
+    });
+
+    it('does not retry a spent hourly quota (402)', async () => {
+      ctx.server.respond({ status: 402, raw: 'You have hit your hourly limit for API calls.', contentType: 'text/plain' });
+      const toggl = ctx.server.client({ retryDelay: 1 });
+
+      await expect(toggl.apiRequest('me')).rejects.toMatchObject({ code: 402 });
+      expect(ctx.server.requests).toHaveLength(1);
+    });
+
+    it('retries reports requests too', async () => {
+      ctx.server.respond(tooFastThen(1, { body: [] }));
+      const toggl = ctx.server.client({ retryDelay: 1 });
+
+      await expect(toggl.reportsRequest('workspace/1/weekly/time_entries', { method: 'POST' })).resolves.toEqual([]);
+      expect(ctx.server.requests).toHaveLength(2);
     });
   });
 
@@ -294,6 +368,8 @@ describe('TogglClient core', () => {
       const toggl = new TogglClient();
       expect(toggl.options.apiUrl).toBe('https://api.track.toggl.com/api/v9/');
       expect(toggl.options.reportsUrl).toBe('https://api.track.toggl.com/reports/api/v3/');
+      expect(toggl.options.retries).toBe(3);
+      expect(toggl.options.retryDelay).toBe(1000);
     });
 
     it('setDefaults() changes the options of new clients', () => {

@@ -44,7 +44,7 @@ Moves the library to the [Track API v9](https://engineering.toggl.com/docs/track
 
 ### New
 
-- **Client:** `timeout` and `fetch` options. Every method returns a promise when called without a callback (1.0.2 took callbacks only).
+- **Client:** requests rejected with a `429` (sent too fast) are retried, waiting for `Retry-After` or backing off from 1 second ([#15](https://github.com/7eggs/node-toggl-api/issues/15)). The `retries` (3) and `retryDelay` options tune it. `timeout` and `fetch` options. Every method returns a promise when called without a callback (1.0.2 took callbacks only).
 - **User:** `getUserOrganizations`, `getUserTags`, `getUserFeatures`, `getUserQuota`, `getUserPreferences`, `updateUserPreferences`. `createUser` takes an optional timezone, or the whole sign up data.
 - **Time entries:** `getTimeEntries` takes an options object (`since`, `before`, `meta`, ...) besides `(startDate, endDate)`. `getTimeEntryData` takes options. `startTimeEntry` defaults `start` to now.
 - **Tags:** `getTags` takes `page`, `per_page` and `search`.

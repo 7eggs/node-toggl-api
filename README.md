@@ -56,7 +56,9 @@ const user = await toggl.authenticate(); // optional: checks the credentials, st
 |---|---|---|
 | `apiToken` | | API token |
 | `username`, `password` | | E-mail and password, used when there is no `apiToken` |
-| `timeout` | none | Request timeout, in milliseconds |
+| `timeout` | none | Request timeout, in milliseconds, per attempt |
+| `retries` | `3` | How many times to retry a request rejected with a `429` (sent too fast). `0` disables retries |
+| `retryDelay` | `1000` | Wait before the first retry, in milliseconds, doubled on each retry. A `Retry-After` header takes precedence |
 | `fetch` | global `fetch` | Custom `fetch` implementation, for proxies or tests |
 | `apiUrl` | `https://api.track.toggl.com/api/v9/` | Track API base URL |
 | `reportsUrl` | `https://api.track.toggl.com/reports/api/v3/` | Reports API base URL |
@@ -82,7 +84,7 @@ try {
 
 Network errors and timeouts reject with the error thrown by `fetch`. Calling a method without a required ID throws a `TypeError` before anything is sent.
 
-Toggl limits how many requests you can make per hour, per organization, depending on the plan (30 on Free). Over the limit, requests reject with a `402` whose message says when the quota resets. Requests sent too fast reject with a `429`. `getUserQuota()` shows what is left.
+Toggl limits how many requests you can make per hour, per organization, depending on the plan (30 on Free). Over the limit, requests reject with a `402` whose message says when the quota resets. `getUserQuota()` shows what is left. Requests sent too fast get a `429`: the client waits and retries them (see the `retries` and `retryDelay` options), and rejects with the `429` when the retries run out.
 
 ### Reports
 
