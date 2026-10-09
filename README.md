@@ -138,7 +138,7 @@ Methods link to the official documentation in their JSDoc comments. Workspace-sc
 `startTimeEntry` starts a running entry (`start` defaults to now). `createTimeEntry` records a finished one: give it `start` and `duration` (in seconds) or `stop`. Both read the workspace from `data.workspace_id`.
 
 **Tags**
-`getTags(workspaceId, [options])`, `createTag(workspaceId, name)`, `updateTagName(workspaceId, tagId, name)`, `deleteTag(workspaceId, tagId)`, `addTimeEntryTags(workspaceId, teId, tags)`, `removeTimeEntryTags(workspaceId, teId, tags)`, `updateTimeEntryTags(workspaceId, teId, tags, 'add'|'delete')`, `addTimeEntriesTags(workspaceId, teIds, tags)`, `removeTimeEntriesTags(workspaceId, teIds, tags)`, `updateTimeEntriesTags(workspaceId, teIds, tags, 'add'|'remove'|'replace')`
+`getTags(workspaceId, [options])`, `createTag(workspaceId, name)`, `updateTagName(workspaceId, tagId, name)`, `deleteTag(workspaceId, tagId)`, `addTimeEntryTags(workspaceId, teId, tags)`, `removeTimeEntryTags(workspaceId, teId, tags)`, `updateTimeEntryTags(workspaceId, teId, tags, 'add'|'remove')`, `addTimeEntriesTags(workspaceId, teIds, tags)`, `removeTimeEntriesTags(workspaceId, teIds, tags)`, `updateTimeEntriesTags(workspaceId, teIds, tags, 'add'|'remove'|'replace')`
 
 **Projects**
 `getUserProjects([options])`, `getWorkspaceProjects(workspaceId, [options])`, `createProject(workspaceId, data)`, `getProjectData(workspaceId, projectId)`, `updateProject(workspaceId, projectId, data)`, `updateProjects(workspaceId, projectIds, operations)`, `deleteProject(workspaceId, projectId, [options])`, `deleteProjects(workspaceId, projectIds, [options])`, `pinProject(workspaceId, projectId, [pin])`

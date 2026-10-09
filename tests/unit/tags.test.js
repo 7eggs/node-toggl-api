@@ -47,10 +47,16 @@ describe('Tags', () => {
       body: { tags: ['a', 'b'], tag_action: 'add' }
     },
     {
-      name: 'removeTimeEntryTags(wid, id, tags) uses the "delete" tag action',
+      name: 'removeTimeEntryTags(wid, id, tags)',
       call: (t, ...cb) => t.removeTimeEntryTags(1, 42, ['a'], ...cb),
       method: 'PUT', path: '/api/v9/workspaces/1/time_entries/42',
-      body: { tags: ['a'], tag_action: 'delete' }
+      body: { tags: ['a'], tag_action: 'remove' }
+    },
+    {
+      name: 'updateTimeEntryTags(wid, id, tags, "delete") sends "remove"',
+      call: (t, ...cb) => t.updateTimeEntryTags(1, 42, ['a'], 'delete', ...cb),
+      method: 'PUT', path: '/api/v9/workspaces/1/time_entries/42',
+      body: { tags: ['a'], tag_action: 'remove' }
     },
     {
       name: 'updateTimeEntriesTags(wid, ids, tags, action)',

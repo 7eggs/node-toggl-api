@@ -41,8 +41,8 @@ describeLive('Testing Tags', () => {
     const timeEntry = await togglClient.startTimeEntry({ workspace_id: workspaceId, description: 'Tag test' })
     const other = await togglClient.startTimeEntry({ workspace_id: workspaceId, description: 'Tag test 2' })
 
+    const tags = ['node-toggl-api tag1', 'node-toggl-api tag2']
     try {
-      const tags = ['node-toggl-api tag1', 'node-toggl-api tag2']
       await togglClient.addTimeEntryTags(workspaceId, timeEntry.id, tags)
       expect((await togglClient.getTimeEntryData(timeEntry.id)).tags.sort()).toEqual(tags)
 
@@ -55,14 +55,14 @@ describeLive('Testing Tags', () => {
       await togglClient.removeTimeEntriesTags(workspaceId, [timeEntry.id, other.id], tags)
       expect((await togglClient.getTimeEntryData(timeEntry.id)).tags).toEqual([])
       expect((await togglClient.getTimeEntryData(other.id)).tags).toEqual([])
+    } finally {
+      await togglClient.deleteTimeEntry(workspaceId, timeEntry.id)
+      await togglClient.deleteTimeEntry(workspaceId, other.id)
 
       const allTags = await togglClient.getTags(workspaceId)
       for (const tag of allTags.filter(t => tags.includes(t.name))) {
         await togglClient.deleteTag(workspaceId, tag.id)
       }
-    } finally {
-      await togglClient.deleteTimeEntry(workspaceId, timeEntry.id)
-      await togglClient.deleteTimeEntry(workspaceId, other.id)
     }
   })
 });
