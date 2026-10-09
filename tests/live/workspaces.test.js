@@ -53,11 +53,22 @@ describeLive('Testing Workspaces', () => {
         expect(users).toBeInstanceOf(Array)
     })
 
-    it('should get workspace statistics and time entry constraints', async () => {
+    it('should get workspace statistics', async () => {
         const statistics = await togglClient.getWorkspaceStatistics(workspaceId)
         expect(statistics).toHaveProperty('members_count')
+    })
+
+    // The route is in Toggl's OpenAPI spec, but the API answered "404 page
+    // not found" on Free workspaces when this was written
+    it('should get time entry constraints, or a 404', async () => {
         const constraints = await togglClient.getTimeEntryConstraints(workspaceId)
-        expect(constraints).toHaveProperty('time_entry_constraints_enabled')
+            .catch(err => {
+                expect(err).toMatchObject({ name: 'APIError', code: 404 })
+                return null
+            })
+        if (constraints) {
+            expect(constraints).toHaveProperty('time_entry_constraints_enabled')
+        }
     })
 
     it('should update workspace data and restore it', async () => {
