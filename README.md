@@ -82,7 +82,7 @@ try {
 
 Network errors and timeouts reject with the error thrown by `fetch`. Calling a method without a required ID throws a `TypeError` before anything is sent.
 
-Toggl limits how fast you can call the API. Watch out for `429` errors, and see `getUserQuota()`.
+Toggl limits how many requests you can make per hour, per organization, depending on the plan (30 on Free). Over the limit, requests reject with a `402` whose message says when the quota resets. Requests sent too fast reject with a `429`. `getUserQuota()` shows what is left.
 
 ### Reports
 
@@ -197,7 +197,7 @@ The full list is in the [changelog](CHANGELOG.md).
     ORGANIZATION_ID=...
     INVITE_EMAIL=...      # optional, enables the invitation test
 
-The live tests create and delete their own data, and restore what they rename. Use a test account anyway.
+The live tests create and delete their own data, and restore what they rename. Use a test account anyway. The whole suite makes more requests than a Free plan allows in an hour, so run it one file at a time (`npm run test:live -- tests/live/tags`), or point `WORKSPACE_ID` and `ORGANIZATION_ID` at different organizations.
 
 ## License
 
