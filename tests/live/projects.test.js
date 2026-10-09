@@ -49,7 +49,8 @@ describeLive('Testing Projects and Tasks', () => {
       try {
         task = await togglClient.createTask(workspaceId, project.id, 'Task 1')
       } catch (err) {
-        // tasks are a paid feature
+        // tasks are a paid feature, but a spent API quota is a 402 too
+        expect(err.message).not.toMatch(/hourly limit/)
         expect(err.code).toBe(402)
         return
       }
